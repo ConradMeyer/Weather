@@ -62,33 +62,3 @@ h2 {
     .ct-series-a .ct-point{
         stroke: blue;
     }
-
-.resultado {
-    margin: 20px auto;
-    width: 80%;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: whitesmoke;
-}
-    .pregunta {
-        margin: 20px auto;
-        text-align: center;
-    }
-        .pregunta h2 {
-            margin: 20px auto;
-        }
-    .respuestas h3 {
-        margin: 20px;
-        width: 400px;
-        text-align: center;
-        border: 1px black solid;
-        padding: 10px;
-    }
-        .respuestas h3:hover {
-            background-color: black;
-            color: whitesmoke;
-            cursor: pointer;
-        }
