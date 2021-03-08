@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: monospace;
+}
+
+.header {
+    background-color: rgb(168, 165, 114);
+    padding: 20px 0;
+}
+
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 50px;
+}
+
+h2 {
+    margin: 20px;
+    text-align: center;
+}
+
+.tiempo {
+    margin: 0px auto;
+    text-align: center;
+}
+    .tiempo input {
+        margin: 10px;
+        padding: 5px;
+        border-radius: 10px;
+        border: 1px solid black;
+    }
+    .tiempo button {
+        margin: 10px;
+        width: 100px;
+        text-align: center;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 10px;
+        color: whitesmoke;
+        border: none;
+        background-color: black;
+    }
+        .tiempo button:hover {
+            cursor: pointer;
+            transform: scale(1.05)
+        }
+
+#chart1 {
+    margin: 20px auto;
+    width: 90%;
+    height: 300px;
+    /* background-color: whitesmoke; */
+}
+    .ct-series-a .ct-line {
+        stroke: blue;
+    }
+    .ct-series-a .ct-point{
+        stroke: blue;
+    }
+
+.resultado {
+    margin: 20px auto;
+    width: 80%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: whitesmoke;
+}
+    .pregunta {
+        margin: 20px auto;
+        text-align: center;
+    }
+        .pregunta h2 {
+            margin: 20px auto;
+        }
+    .respuestas h3 {
+        margin: 20px;
+        width: 400px;
+        text-align: center;
+        border: 1px black solid;
+        padding: 10px;
+    }
+        .respuestas h3:hover {
+            background-color: black;
+            color: whitesmoke;
+            cursor: pointer;
+        }
