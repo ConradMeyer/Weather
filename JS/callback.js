@@ -5,6 +5,7 @@ const INPUTLon = document.querySelector(".lon")
 const TITLE = document.querySelector(".tmp")
 const BTN = document.querySelector("#btn1")
 const RESET = document.querySelector("#btn2")
+const LOCAT = document.querySelector("#btn3")
 const TIEMPO = document.querySelector('.ct-chart')
 
 function getWeather(lat, lon, callback) {
@@ -39,7 +40,7 @@ function pintarDatos(arr){
 
 function printTitle(datos) {
 	let h3 = document.createElement("h3")
-	let text = document.createTextNode(datos.daily[0].weather[0].description)
+	let text = document.createTextNode(`The current weather is ${datos.current.weather[0].description}`)
 	h3.appendChild(text)
 	TITLE.appendChild(h3)
 
@@ -62,18 +63,37 @@ function printMap(lat, lon) {
 	var marker = L.marker([lat, lon]).addTo(mymap);
 }
 
-BTN.addEventListener("click", () =>
-getWeather(INPUTLat.value, INPUTLon.value, (error, datos)=> {
-	if (error !== null) {
-		console.error(error);
-	}
-	else {
-		pintarDatos(datos.daily);
-		printTitle(datos)
-	}
- }))
+function getLocation() {
+  if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+	console.error("Geolocation is not supported by this browser."); ;
+  }
+}
 
-BTN.addEventListener("click", ()=> {
+function showPosition(position) {
+	getWeather(position.coords.latitude, position.coords.longitude, (error, datos)=> {
+		if (error !== null) {
+			console.error(error);
+		}
+		else {
+			pintarDatos(datos.daily);
+			printTitle(datos)
+		}
+	 })
+	printMap(position.coords.latitude, position.coords.longitude)
+}
+
+BTN.addEventListener("click", () =>{
+	getWeather(INPUTLat.value, INPUTLon.value, (error, datos)=> {
+		if (error !== null) {
+			console.error(error);
+		}
+		else {
+			pintarDatos(datos.daily);
+			printTitle(datos)
+		}
+	})
 	printMap(INPUTLat.value, INPUTLon.value)
 })
 
@@ -82,3 +102,5 @@ RESET.addEventListener("click", ()=> {
 	INPUTLat.value = ""
 	INPUTLon.value = ""
 })
+
+LOCAT.addEventListener("click", ()=> getLocation())
