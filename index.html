@@ -3,24 +3,32 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Promises</title>
+	<title>&#60;/Weather&#62;</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+	integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+	crossorigin=""/>
 	<link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
 	<link rel="stylesheet" href="estilos.css">
+	<script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
     <script defer src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 	<script defer src="JS/callback.js"></script>
 </head>
-
 <body>
 	<div class="header">
-		<h1 class="titulo"> &#60;/Weather&#62;  </h1>
+		<h1 class="titulo">&#60;/Weather&#62;</h1>
 		<h2 class="segundo-titulo">Find the weather (max & min temp) using the Latitude and the Longitude</h2>
 		<div class="tiempo">
 			<input type="text" class="lat" placeholder="Latitude">
 			<input type="text" class="lon" placeholder="Longitude">
-			<button type="submit" class="btn">BUSCAR</button>
+			<button type="submit" class="btn" id="btn1">BUSCAR</button>
+			<button class="btn" id="btn2">RESET</button>
 		</div>
 	</div>
-
-	<div class="ct-chart ct-golden-section" id="chart1"></div>
+	<div class="mapa">
+		<div class="ct-chart ct-golden-section" id="chart1"></div>
+	</div>
+	<div id="mapid"></div>
 </body>
 </html>

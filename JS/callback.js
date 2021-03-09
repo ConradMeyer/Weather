@@ -2,9 +2,9 @@
 const WEATHER_API_KEY = "c4a5d60bba8955a6678d1fb43b3844c7";
 const INPUTLat = document.querySelector(".lat")
 const INPUTLon = document.querySelector(".lon")
-const BTN = document.querySelector(".btn")
+const BTN = document.querySelector("#btn1")
+const RESET = document.querySelector("#btn2")
 const TIEMPO = document.querySelector('.ct-chart')
-// const RESULTADO = document.querySelector(".resultado-tiempo")
 
 function getWeather(lat, lon, callback) {
 		if (!WEATHER_API_KEY)
@@ -12,7 +12,7 @@ function getWeather(lat, lon, callback) {
 		else if (!lat || !lon)
 			callback(new Error("You must provide latitude and longitude", null));
 		else {
-			fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${WEATHER_API_KEY}`)
+			fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${WEATHER_API_KEY}&units=metric`)
 			.then(response => response.json())
 			.then(questions => callback(null, questions))
 			.catch(error => {callback(error, null)});
@@ -20,7 +20,6 @@ function getWeather(lat, lon, callback) {
 }
 
 function pintarDatos(arr){
-
 	let data = {
 		// A labels array that can contain any sort of values
 		labels: ['Hoy', 'Mañana', 'Pasado', 'Pasado +1', 'Pasado +2', 'Pasado +3', 'Pasado +4', 'En una semana'],
@@ -37,6 +36,20 @@ function pintarDatos(arr){
 	  new Chartist.Line('.ct-chart', data);
 }
 
+function printMap(lat, lon) {
+	var mymap = L.map('mapid').setView([lat, lon], 13);
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		maxZoom: 18,
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1,
+		accessToken: 'pk.eyJ1IjoiY29ucmFkbWV5ZXIiLCJhIjoiY2ttMXNmN3NxMDh4OTJ3cjA1aTQwaGdreSJ9.CarWmjVcwgEYK1HwmgK_0Q'
+	}).addTo(mymap);
+
+	var marker = L.marker([lat, lon]).addTo(mymap);
+}
+
 BTN.addEventListener("click", () =>
 getWeather(INPUTLat.value, INPUTLon.value, (error, datos)=> {
 	if (error !== null) {
@@ -45,4 +58,10 @@ getWeather(INPUTLat.value, INPUTLon.value, (error, datos)=> {
 	else {
 		pintarDatos(datos.daily);
 	}
-}))
+ }))
+
+BTN.addEventListener("click", ()=> {
+	printMap(INPUTLat.value, INPUTLon.value)
+})
+
+RESET.addEventListener("click", ()=> window.location.reload())
