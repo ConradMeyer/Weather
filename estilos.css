@@ -49,6 +49,18 @@ h2 {
             cursor: pointer;
             transform: scale(1.05)
         }
+
+.tmp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+    .tmp h3 {
+        font-size: 20px;
+        color: white;
+    }
 .mapa {
     background-color: whitesmoke;
     padding: 20px auto;

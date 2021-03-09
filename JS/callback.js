@@ -2,6 +2,7 @@
 const WEATHER_API_KEY = "c4a5d60bba8955a6678d1fb43b3844c7";
 const INPUTLat = document.querySelector(".lat")
 const INPUTLon = document.querySelector(".lon")
+const TITLE = document.querySelector(".tmp")
 const BTN = document.querySelector("#btn1")
 const RESET = document.querySelector("#btn2")
 const TIEMPO = document.querySelector('.ct-chart')
@@ -36,6 +37,17 @@ function pintarDatos(arr){
 	  new Chartist.Line('.ct-chart', data);
 }
 
+function printTitle(datos) {
+	let h3 = document.createElement("h3")
+	let text = document.createTextNode(datos.daily[0].weather[0].description)
+	h3.appendChild(text)
+	TITLE.appendChild(h3)
+
+	let img = document.createElement("img")
+	img.setAttribute("src", `http://openweathermap.org/img/wn/${datos.current.weather[0].icon}@2x.png`)
+	TITLE.appendChild(img)
+}
+
 function printMap(lat, lon) {
 	var mymap = L.map('mapid').setView([lat, lon], 13);
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -57,6 +69,7 @@ getWeather(INPUTLat.value, INPUTLon.value, (error, datos)=> {
 	}
 	else {
 		pintarDatos(datos.daily);
+		printTitle(datos)
 	}
  }))
 
@@ -64,4 +77,8 @@ BTN.addEventListener("click", ()=> {
 	printMap(INPUTLat.value, INPUTLon.value)
 })
 
-RESET.addEventListener("click", ()=> window.location.reload())
+RESET.addEventListener("click", ()=> {
+	window.location.reload()
+	INPUTLat.value = ""
+	INPUTLon.value = ""
+})
