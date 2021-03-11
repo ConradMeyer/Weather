@@ -83,3 +83,27 @@ h2 {
     .ct-series-a .ct-point{
         stroke: blue;
     }
+
+    /* -------------- MEDIA QUERYS -------------- */
+
+    @media screen and (max-width: 360px) {
+        h1 {
+            font-size: 45px;
+        }
+        .tiempo input {
+            width: 100px;
+        }
+        #mapid {
+            height: 250px;
+            width: 95%;
+        }
+        #chart1 {
+            height: 250px;
+            width: 100%;
+        }
+        .tmp h3 {
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+    }
